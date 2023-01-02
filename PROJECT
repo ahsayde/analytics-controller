@@ -1,0 +1,30 @@
+domain: analytics.weave.works
+layout:
+- go.kubebuilder.io/v3
+projectName: analytic-controller
+repo: github.com/ahsayde/analytics-controller
+resources:
+- api:
+    crdVersion: v1
+    namespaced: true
+  controller: true
+  domain: analytics.weave.works
+  kind: Analytic
+  path: github.com/ahsayde/analytics-controller/api/v1alpha1
+  version: v1alpha1
+- api:
+    crdVersion: v1
+    namespaced: true
+  domain: analytics.weave.works
+  kind: EventSet
+  path: github.com/ahsayde/analytics-controller/api/v1alpha1
+  version: v1alpha1
+- api:
+    crdVersion: v1
+    namespaced: true
+  controller: true
+  domain: analytics.weave.works
+  kind: Sink
+  path: github.com/ahsayde/analytics-controller/api/v1alpha1
+  version: v1alpha1
+version: "3"

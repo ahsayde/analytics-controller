@@ -1,0 +1,33 @@
+INSERT OR IGNORE INTO events(
+    "uid",
+    "type",
+    "reason",
+    "message",
+    "action",
+    "count",
+    "reportingController",
+    "reportingInstance",
+    "firstTimestamp",
+    "lastTimestamp",
+    "involvedObject.uid",
+    "involvedObject.apiVersion",
+    "involvedObject.kind",
+    "involvedObject.name",
+    "involvedObject.namespace"
+) VALUES(
+    ?,
+    ?,
+    ?,
+    ?,
+    ?,
+    ?,
+    ?,
+    ?,
+    ?,
+    ?,
+    ?,
+    ?,
+    ?,
+    ?,
+    ?
+)

@@ -1,0 +1,93 @@
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.9.2
+  creationTimestamp: null
+  name: eventsets.analytics.weave.works
+spec:
+  group: analytics.weave.works
+  names:
+    kind: EventSet
+    listKind: EventSetList
+    plural: eventsets
+    singular: eventset
+  scope: Cluster
+  versions:
+  - name: v1alpha1
+    schema:
+      openAPIV3Schema:
+        description: EventSet is the Schema for the eventsets API
+        properties:
+          apiVersion:
+            description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+            type: string
+          kind:
+            description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: EventSetSpec defines the desired state of EventSet
+            properties:
+              match:
+                properties:
+                  reasons:
+                    description: Reasons list of event reasons to watch.
+                    items:
+                      type: string
+                    type: array
+                  resources:
+                    description: Resources list of event's involved objects to watch.
+                    items:
+                      minProperties: 1
+                      properties:
+                        apiVersion:
+                          description: API version of the involved object.
+                          type: string
+                        kind:
+                          description: Kind of the involved object.
+                          type: string
+                        name:
+                          description: Name of the involved object.
+                          type: string
+                        namespace:
+                          description: Namespace of the involved object.
+                          type: string
+                      type: object
+                    type: array
+                  type:
+                    description: Type of events to watch.
+                    enum:
+                    - Normal
+                    - Warning
+                    type: string
+                type: object
+              sinkRefs:
+                items:
+                  description: LocalObjectReference contains enough information to
+                    let you locate the referenced object inside the same namespace.
+                  properties:
+                    name:
+                      description: 'Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+                        TODO: Add other useful fields. apiVersion, kind, uid?'
+                      type: string
+                  type: object
+                  x-kubernetes-map-type: atomic
+                type: array
+            required:
+            - match
+            type: object
+          status:
+            description: EventSetStatus defines the observed state of EventSet
+            type: object
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}

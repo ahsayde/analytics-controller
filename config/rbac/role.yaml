@@ -1,0 +1,59 @@
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  creationTimestamp: null
+  name: manager-role
+rules:
+- apiGroups:
+  - analytics.weave.works
+  resources:
+  - analytics
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - analytics.weave.works
+  resources:
+  - analytics/finalizers
+  verbs:
+  - update
+- apiGroups:
+  - analytics.weave.works
+  resources:
+  - analytics/status
+  verbs:
+  - get
+  - patch
+  - update
+- apiGroups:
+  - analytics.weave.works
+  resources:
+  - sinks
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - analytics.weave.works
+  resources:
+  - sinks/finalizers
+  verbs:
+  - update
+- apiGroups:
+  - analytics.weave.works
+  resources:
+  - sinks/status
+  verbs:
+  - get
+  - patch
+  - update
